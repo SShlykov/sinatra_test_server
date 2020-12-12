@@ -45,7 +45,7 @@ class Web < Sinatra::Base
     options.add_argument('--disable-translate')
     options.add_argument('--headless')
 
-    b = Watir::Browser.new :chrome, headless: true
+    b = Watir::Browser.new :chrome, options: options 
     b.goto(params["URL"])
     input = b.text_field id: "inp"
     b.button.click
