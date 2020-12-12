@@ -33,6 +33,20 @@ class Web < Sinatra::Base
     "function task(x) {return x * this**2;}"
   end
 
+  get /\/test\/?/ do
+    require 'watir'
+    require 'webdrivers'
+    headers['Content-Type'] = @@plain_text
+    b = Watir::Browser.new :chrome, headless: true
+    b.goto(params["URL"])
+    input = b.text_field id: "inp"
+    b.button.click
+    sleep 5
+    val = input.value
+    b.close
+    return val
+  end
+
   get /\/promise\/?/ do
     headers['Content-Type'] = @@plain_text
     "function task(x){ return new Promise((res, rej) => x < 18 ? res('yes') : rej('no')); }"
