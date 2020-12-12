@@ -21,15 +21,12 @@ class Web < Sinatra::Base
   
   get /\/sample\/?/ do
     headers['Content-Type'] = @@plain_text
-  "function task(x) {
-    return x * this**2
-  }"
+    "function task(x) {return x * this**2;}"
   end
 
   get /\/promise\/?/ do
-  "function task(x) {
-    return (new Promise((res, rej) => x < 18 ? res(\"yes\"): res(\"no\")))
-  }"
+    headers['Content-Type'] = @@plain_text
+    "function task(x){ return new Promise((res, rej) => x < 18 ? res('yes') : rej('no')); }"
   end
   get /\/fetch\/?/ do
     erb :index
