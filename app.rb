@@ -28,7 +28,7 @@ class Web < Sinatra::Base
 
   get /\/promise\/?/ do
   "function task(x) {
-    return (new Promise((res, rej) => x < 18 ? res(\"yes\"): rej(\"no\")))
+    return (new Promise((res, rej) => x < 18 ? res(\"yes\"): res(\"no\")))
   }"
   end
   get /\/fetch\/?/ do
