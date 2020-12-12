@@ -26,7 +26,7 @@ class Web < Sinatra::Base
 
   get /\/promise\/?/ do
     headers['Content-Type'] = @@plain_text
-    "function task(x){ const t = (value) => new Promise((res, rej) => (value < 18 ? res(\"yes\") : rej(\"no\"))); return t(x);}"
+    "function task(x){ (value => new Promise((res, rej) => (value < 18 ? res(\"yes\") : rej(\"no\"))))(x) }"
   end
   get /\/fetch\/?/ do
     erb :index
