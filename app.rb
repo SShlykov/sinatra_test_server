@@ -37,6 +37,14 @@ class Web < Sinatra::Base
     require 'watir'
     require 'webdrivers'
     headers['Content-Type'] = @@plain_text
+
+    Selenium::WebDriver::Chrome.driver_path = "~/chromedriver/chromedriver"
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--disable-popup-blocking')
+    options.add_argument('--disable-translate')
+    options.add_argument('--headless')
+
     b = Watir::Browser.new :chrome, headless: true
     b.goto(params["URL"])
     input = b.text_field id: "inp"
